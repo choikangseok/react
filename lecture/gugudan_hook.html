@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <meta charset = "UTF-8" />
+    <title>구구단</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src= "https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+    <body>    
+        <div id ="root"></div> <!--결과: <div id="root"><button>Like</button><div> -->
+        <!-- 세부 설정은 바벨 따로 설정이 필요하다. 나중에 다룰 내용 -->
+        <script type = "text/babel">
+            // const e = React.createElement;
+        //
+const GuGuDan = () => {
+    const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+    const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+    const [value, setValue] = React.useState("");
+    const [result, setResult] = React.useState("");
+    const inputRef = React.useRef(null);
+
+    const onSubmitForm = (e) => {
+        e.preventDefault();
+        if (parseInt(value) === first * second ){
+            setResult("정답: " + value);
+            setFirst(Math.ceil(Math.random() * 9));
+            setSecond(Math.ceil(Math.random() * 9));
+            setValue('');
+        }else{
+            setResult("틀렸습니다.");
+            setValue("");
+        }  
+        inputRef.current.focus();
+    };
+    
+    const onChangeInput = (e) => {
+        setValue(e.target.value);
+    };
+
+    console.log("렌더링");
+    return  (
+        <React.Fragment>
+            <div>{first} 곱하기 {second}는? </div>
+            <form onSubmit = {onSubmitForm}>
+                <input ref = {inputRef} onChange = {onChangeInput} value={value} />
+                <button>입력!</button>
+            </form>
+            <div id="result">{result}</div>
+        </React.Fragment>
+    );
+}
+</script>
+
+<script type ="text/babel">
+    ReactDOM.render( <div><GuGuDan /> <GuGuDan /> <GuGuDan /> </div> , document.querySelector('#root'));
+</script>
+</body>
+
+</html>
+
+<!--
+    편할 것들을 state로 만들어준다.
+    변하는 부분을 우리가 컨트롤 한다는 개념
+    이벤트 리스너 함수로 뺄 수 있어야 한다.    
+
+    렌더 리턴에 오류
+    
+    <React.Fragment>
+    </React.Fragment>
+
+    <>
+    </>
+
+    팁
+    form 이 있는 경우는 onSubmit
+    form 이 없는 경우에는 onClick
+
+-->
+
+
+<!--
+
+this.setState({
+    result : this.state.first + " * " + this.state.second + " = " + this.state.value + " 정답 ",
+    result_num : this.state.value,
+    // bfirst : this.state.first,
+    // bsecond : this.state.second,
+    // 새로운 문제
+    first : Math.ceil(Math.random() * 9),
+    second : Math.ceil(Math.random() * 9),
+    value: '',
+}); 
+
+
+우
+
+
+-->
+
