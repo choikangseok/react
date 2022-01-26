@@ -1,9 +1,10 @@
 const path = require('path');
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 // 노드에서 path 경로 쉽게 조작하는 것
 //외우자
 
 module.exports = {
-    name: "wordrelay-setting",
+    name: "wordrelay",
     mode: 'development', //실서비스 :production
     devtool: 'eval',
     // 엔트리 확장자 입력 안해도 됨.!
@@ -17,19 +18,44 @@ module.exports = {
         app: ['./client'],
     }, // 입력
 
-    module : {
-        rules: [{
-            test: /\.jsx?/,
+    module: {
+        rules:[{
+            test: /\.jsx?$/,
             loader: 'babel-loader',
             options: {
-                presets: ['@babel/preset-env', '@babel/preset-react'],
+                presets:[
+                    ['@babel/preset-env', {
+                        targets: {
+                            browsers: ['last 2 chrome versions'], //browserslist '1> !% in KR'
+                        },
+                        debug: true,
+                    }],
+                    '@babel/preset-react',
+                ],
+                plugins: [
+                    '@babel/plugin-proposal-class-properties',
+                    'react-refresh/babel'
+                ],
             },
         }],
-
     },
+    plugins: [
+        // 
+        new RefreshWebpackPlugin()
+
+        // 실무코드 10개 정도 존재할 가능성 높음
+        // 플러그인들 제거하면서 알아보기
+    ],
 
     output: {
         path: path.join(__dirname, 'dist'), //실제 경로 C:\users ~
-        filename : 'app.js'
+        filename : 'app.js',
+        publicPath: '/dist', //가상의 경로 노드를 아는 사람은 쉬움.. express.static과 비슷함
     }, //출력
+    devServer: {
+        devMiddleware : { publicPath : '/dist'},
+        static: { directory : path.resolve(__dirname)},
+        hot : true
+        // 소스코드의 변경점을 확일할 수 있음
+    },
 };
