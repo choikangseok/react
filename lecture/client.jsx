@@ -1,9 +1,7 @@
-const React = require("react");
-const ReactDom = require("react-dom");
+import React from "react";
+import ReactDom from "react-dom";
 
-const WordRelay = require('./WordRelay');
-
-// 왠만하면 jsx로
-ReactDom.render(<WordRelay />, document.querySelector('#root'));
+import Bgame from './NumberBaseball';
 
 
+ReactDom.render(<Bgame />, document.querySelector('#root'));

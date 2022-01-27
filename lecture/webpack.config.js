@@ -4,7 +4,7 @@ const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 //외우자
 
 module.exports = {
-    name: "wordrelay",
+    name: "numberBaseball",
     mode: 'development', //실서비스 :production
     devtool: 'eval',
     // 엔트리 확장자 입력 안해도 됨.!
@@ -40,7 +40,7 @@ module.exports = {
         }],
     },
     plugins: [
-        // 
+        //빌드할 때 마다 실행된다.
         new RefreshWebpackPlugin()
 
         // 실무코드 10개 정도 존재할 가능성 높음
