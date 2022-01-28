@@ -1,5 +1,8 @@
 const path = require('path');
+// process.env.NODE_ENV = 'production'; //배포 모드
 const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+
 // 노드에서 path 경로 쉽게 조작하는 것
 //외우자
 
@@ -34,7 +37,8 @@ module.exports = {
                 ],
                 plugins: [
                     '@babel/plugin-proposal-class-properties',
-                    'react-refresh/babel'
+                    'react-refresh/babel',
+                    'react-hot-loader/babel'
                 ],
             },
         }],

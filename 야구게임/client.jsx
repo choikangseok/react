@@ -2,9 +2,11 @@ import React from "react";
 import ReactDom from "react-dom";
 import { hot } from 'react-hot-loader/root';
 
-import ResponseCheck from './ResponseCheck';
+// import Bgame from "./RenderTest";
 
-const Hot = hot(ResponseCheck);
+import Bgame from './NumberBaseball';
+
+const Hot = hot(Bgame);
 
 // ReactDom.render(<Hot />, document.querySelector('#root'));
 ReactDom.render(<Hot />, document.querySelector('#root'));
