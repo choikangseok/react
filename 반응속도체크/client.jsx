@@ -2,9 +2,9 @@ import React from "react";
 import ReactDom from "react-dom";
 import { hot } from 'react-hot-loader/root';
 
-import RSP from './RSP';
+import ResponseCheck from './ResponseCheck';
 
-const Hot = hot(RSP);
+const Hot = hot(ResponseCheck);
 
 // ReactDom.render(<Hot />, document.querySelector('#root'));
 ReactDom.render(<Hot />, document.querySelector('#root'));
